@@ -1,0 +1,20 @@
+
+CXX=g++
+CXXFLAGS=-c -Wall
+
+ARFLAGS=rcs
+OBJECTS = project.o
+
+all: my_inf_arith
+
+my_inf_arith: $(OBJECTS)
+	$(CXX) $(OBJECTS) -o my_inf_arith
+	
+libmy_inf_arith: $(OBJECTS)
+	$(AR) $(ARFLAGS) libmy_inf_arith.a $(OBJECTS)
+
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) $< -o $@
+
+clean:
+	rm -rf *.o my_inf_arith libmy_inf_arith.a
